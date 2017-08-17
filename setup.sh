@@ -96,10 +96,9 @@ ss_mgr_s(){
 	cd
 	mkdir -p ~/.ssmgr/
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
-	rm -fr /root/.ssmgr/default.yml
-	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/default.yml
+	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
 	cd ~/.ssmgr
-	screen -dmS ssmgr ssmgr -c default.yml
+	screen -dmS ssmgr ssmgr -c ss.yml
 	cd
 
 	
