@@ -84,15 +84,13 @@ install_ss_mgr(){
 	install_libsodium
 	install_ss_for_each
 	npm i -g shadowsocks-manager
-	ln -s /usr/bin/nodejs/node-v6.9.1-linux-x64/bin/ssmgr /usr/bin/ssmgr
+	
 	
 }
 ss_mgr_s(){
 	install_ss_mgr
-	mkdir /root/.ssmgr
+	mkdir -p ~/.ssmgr/
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
-	cd /root/shadowsocks-manager/
-	ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	cd ~/.ssmgr
 	screen -dmS ssmgr ssmgr -c ss.yml
