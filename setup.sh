@@ -65,11 +65,13 @@ install_ss_libev(){
 	tar -xf shadowsocks-libev-3.0.8.tar.gz && rm -rf shadowsocks-libev-3.0.8.tar.gz && cd shadowsocks-libev-3.0.8
 	./configure
 	make && make install
+	cd
 }
 install_ss_ubuntu(){
 	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
 	sudo apt-get update
 	sudo apt install shadowsocks-libev
+	cd
 }
 install_ss_for_each(){
 	if [[ ${release} = "centos" ]]; then
@@ -83,15 +85,19 @@ install_ss_mgr(){
 	install_nodejs
 	install_libsodium
 	install_ss_for_each
+	cd
 	npm i -g shadowsocks-manager
+	cd
 	
 	
 }
 ss_mgr_s(){
 	install_ss_mgr
+	cd
 	mkdir -p ~/.ssmgr/
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
+	rm -fr /root/.ssmgr/default.yml
 	cd ~/.ssmgr
 	screen -dmS ssmgr ssmgr -c ss.yml
 	cd
@@ -103,8 +109,6 @@ ss_mgr_m(){
 	cd 
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
 	sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
-	cd ~/.ssmgr
-	ssmgr -c webgui.yml
 	cd ~/.ssmgr
 	screen -dmS webgui ssmgr -c webgui.yml
 	cd
