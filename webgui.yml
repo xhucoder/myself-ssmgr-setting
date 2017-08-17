@@ -32,8 +32,8 @@ plugins:
         flow: 200000000000
   email:
     use: true
-    username: 'postmaster@fanhuichina.gq' #这里请填写你的发件服务器的完整邮箱地址，请注意两边需要 ' 包含起来
-    password: '872ab0575090986cb9ef500ed5c927fb' #这里请改为你发件邮箱的密码，请注意两边需要 ' 包含起来
+    username: 'postmaster@sandboxee473cfaf4704085b9c36d5001dcdc39.mailgun.org' #这里请填写你的发件服务器的完整邮箱地址，请注意两边需要 ' 包含起来
+    password: '841be0c51507968f6e698d457ec28928' #这里请改为你发件邮箱的密码，请注意两边需要 ' 包含起来
     host: 'smtp.mailgun.org' #这里请注意改为你的发件服务器的SMTP发件地址，请注意两边需要 ' 包含起来
   webgui:
     use: true
