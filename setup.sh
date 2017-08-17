@@ -24,7 +24,7 @@ check_sys(){
 install_soft_for_each(){
 	check_sys
 	if [[ ${release} = "centos" ]]; then
-		yum update
+		yum update -y
 		yum groupinstall "Development Tools" -y
 		yum install -y wget curl tar unzip -y
 		yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
@@ -38,12 +38,10 @@ install_soft_for_each(){
 	fi
 }
 install_nodejs(){
-	mkdir /usr/bin/nodejs
- 	wget https://nodejs.org/dist/v6.9.5/node-v6.9.5-linux-x64.tar.gz
- 	tar -xf node-v6.9.5-linux-x64.tar.gz -C /usr/bin/nodejs/
- 	rm -rf node-v6.9.5-linux-x64.tar.gz
- 	ln -s /usr/bin/nodejs/node-v6.9.1-linux-x64/bin/node /usr//bin/node
-	ln -s /usr/bin/nodejs/node-v6.9.1-linux-x64/bin/npm /usr/bin/npm
+	curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+	sudo yum -y install nodejs
+	sudo yum install gcc-c++ make
 }
 install_libsodium(){
 	cd /root
