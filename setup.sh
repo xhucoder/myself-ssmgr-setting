@@ -87,6 +87,7 @@ install_ss_mgr(){
 	install_ss_for_each
 	cd
 	npm i -g shadowsocks-manager
+	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	cd
 	
 	
