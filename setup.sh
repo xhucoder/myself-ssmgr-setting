@@ -101,7 +101,7 @@ ss_mgr_m(){
 	ss_mgr_s
 	cd 
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
-	sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
+	sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
 	cd ~/.ssmgr
 	screen -dmS webgui ssmgr -c webgui.yml
 	cd
