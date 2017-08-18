@@ -105,8 +105,17 @@ install_ss_for_each(){
 	       sudo ufw reload
 	fi
 }	  
-	
-
+install_bundle(){  
+        install_soft_for_each
+	install_nodejs
+	install_libsodium
+	install_ss_for_each
+	install_ss_mgr
+	ss_mgr_s
+	install_ss_for_each
+}
+install_bundle
+       
 	echo "#############################################################"
 	echo "# Install SS-mgr  Success                                   #"
 	echo "# Github:                                                   #"
