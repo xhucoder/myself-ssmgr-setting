@@ -75,46 +75,41 @@ install_ss_for_each(){
 	fi
 }
 install_ss_mgr(){
-	install_soft_for_each
-	install_nodejs
-	install_libsodium
-	install_ss_for_each
 	cd
 	npm i -g shadowsocks-manager
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
-	cd
-	
-	
+	cd	
 }
 ss_mgr_s(){
 	install_ss_mgr
 	cd
 	mkdir -p ~/.ssmgr/
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
-	cd ~/.ssmgr
-	screen -dmS ssmgr ssmgr -c ss.yml
-	cd
-
-	
-}
-ss_mgr_m(){
-	ss_mgr_s
-	cd 
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
 	sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
 	cd ~/.ssmgr
+	screen -dmS ssmgr ssmgr -c ss.yml
 	screen -dmS webgui ssmgr -c webgui.yml
-	cd
-
+	cd	
 }
-ss_mgr_m
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
-iptables-save
-systemctl start firewalld
-firewall-cmd --zone=public --add-port=80/tcp --permanent
-firewall-cmd --zone=public --add-port=80/udp --permanent
-firewall-cmd --reload
+install_ss_for_each(){
+	if [[ ${release} = "centos" ]]; then
+	       iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+	       iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+	       iptables-save
+	       service iptables restart
+	       systemctl start firewalld
+	       firewall-cmd --zone=public --add-port=80/tcp --permanent
+	       firewall-cmd --zone=public --add-port=80/udp --permanent
+	       firewall-cmd --reload
+	        
+	else
+	       sudo ufw allow 80
+	       sudo ufw reload
+	fi
+}	  
+	
+
 	echo "#############################################################"
 	echo "# Install SS-mgr  Success                                   #"
 	echo "# Github:                                                   #"
