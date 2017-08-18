@@ -30,13 +30,10 @@ install_soft_for_each(){
 		yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
 		yum install -y gcc gettext gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
 		yum install epel-release -y
-		yum install -y wget curl screen nano
-		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+        yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 	else
 		apt-get update
 		apt-get remove -y apache*
-		apt-get -y update
-		apt-get -y install wget curl screen nano
 		apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
 	fi
 }
@@ -95,6 +92,7 @@ install_ss_mgr(){
 	
 }
 ss_mgr_s(){
+	install_ss_mgr
 	cd
 	mkdir -p ~/.ssmgr/
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
@@ -106,6 +104,7 @@ ss_mgr_s(){
 	
 }
 ss_mgr_m(){
+	ss_mgr_s
 	cd 
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
 	sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
