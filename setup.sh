@@ -75,14 +75,11 @@ install_ss_for_each(){
 	fi
 }
 install_ss_mgr(){
-	cd
 	npm i -g shadowsocks-manager
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	cd	
 }
 ss_mgr_s(){
-	install_ss_mgr
-	cd
 	mkdir -p ~/.ssmgr/
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
