@@ -95,7 +95,6 @@ install_ss_mgr(){
 	
 }
 ss_mgr_s(){
-	install_ss_mgr
 	cd
 	mkdir -p ~/.ssmgr/
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
@@ -107,7 +106,6 @@ ss_mgr_s(){
 	
 }
 ss_mgr_m(){
-	ss_mgr_s
 	cd 
 	wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
 	sed -i "s#127.0.0.1#${IPAddress}#g" /root/.ssmgr/webgui.yml
