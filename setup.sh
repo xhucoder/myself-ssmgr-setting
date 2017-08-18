@@ -53,7 +53,7 @@ install_libsodium(){
 	popd
 	wget https://github.com/ARMmbed/mbedtls/archive/mbedtls-2.5.1.tar.gz
 	tar xvf mbedtls-2.5.1.tar.gz && rm -rf mbedtls-2.5.1.tar.gz
-	pushd mbedtls-2.5.1
+	pushd mbedtls-mbedtls-2.5.1
 	make SHARED=1 CFLAGS=-fPIC
 	make DESTDIR=/usr install
 	popd
