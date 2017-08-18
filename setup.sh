@@ -30,7 +30,8 @@ install_soft_for_each(){
 		yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
 		yum install -y gcc gettext gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
 		yum install epel-release -y
-        yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+		yum update -y
 	else
 		apt-get update
 		apt-get remove -y apache*
@@ -41,7 +42,6 @@ install_nodejs(){
 	curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 	sudo yum -y install nodejs
-	sudo yum install gcc-c++ make
 }
 install_libsodium(){
 	cd /root
@@ -87,7 +87,6 @@ install_ss_mgr(){
 	install_ss_for_each
 	cd
 	npm i -g shadowsocks-manager
-	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	cd
 	
 	
