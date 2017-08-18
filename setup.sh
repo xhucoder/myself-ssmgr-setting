@@ -26,11 +26,11 @@ install_soft_for_each(){
 	if [[ ${release} = "centos" ]]; then
 		yum update -y
 		yum groupinstall "Development Tools" -y
-		yum install -y wget curl tar unzip -y
-		yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
-		yum install -y gcc gettext gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
+		yum install -y wget curl tar unzip -y		
+		yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
+		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano		
 		yum install epel-release -y
-		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+		
 	else
 		apt-get update
 		apt-get remove -y apache*
@@ -75,6 +75,7 @@ install_ss_for_each(){
 	fi
 }
 install_ss_mgr(){
+        
 	npm i -g shadowsocks-manager
 	screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 	cd	
@@ -111,8 +112,6 @@ install_bundle(){
 	install_libsodium
 	install_ss_for_each
 	install_ss_mgr
-	ss_mgr_s
-	install_ss_for_each
 }
 install_bundle
        
