@@ -39,7 +39,7 @@ plugins:
     use: true
     host: '0.0.0.0'
     port: '80'
-    site: '127.0.0.1' #这里请输入你的网站域名，不需要填写http:// ，请注意两边需要 ' 包含起来
+    site: 'X.X.X.X' #这里请输入你的网站域名，不需要填写http:// ，请注意两边需要 ' 包含起来
     gcmSenderId: '456102641793'
     gcmAPIKey: 'AAAAGzzdqrE:XXXXXXXXXXXXXX'
   alipay:
