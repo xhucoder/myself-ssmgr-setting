@@ -31,7 +31,6 @@ install_soft_for_each(){
 		yum install -y gcc gettext gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel vim epel-release libsodium-devel libsodium
 		yum install epel-release -y
 		yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
-		yum update -y
 	else
 		apt-get update
 		apt-get remove -y apache*
@@ -59,25 +58,20 @@ install_libsodium(){
 	popd
 	ldconfig
 }
-install_ss_libev(){
-	cd /root 
-	wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.8/shadowsocks-libev-3.0.8.tar.gz
-	tar -xf shadowsocks-libev-3.0.8.tar.gz && rm -rf shadowsocks-libev-3.0.8.tar.gz && cd shadowsocks-libev-3.0.8
-	./configure
-	make && make install
-	cd
-}
-install_ss_ubuntu(){
-	sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
-	sudo apt-get update
-	sudo apt install shadowsocks-libev
-	cd
-}
 install_ss_for_each(){
 	if [[ ${release} = "centos" ]]; then
-		install_ss_libev
+		wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
+		tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
+		pushd libsodium-1.0.13
+		./configure --prefix=/usr && make
+		make install
+		popd
 	else
 		install_ss_ubuntu
+		sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
+		sudo apt-get update
+		sudo apt install shadowsocks-libev
+		cd
 	fi
 }
 install_ss_mgr(){
