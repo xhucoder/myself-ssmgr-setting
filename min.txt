@@ -115,3 +115,7 @@ firewall-cmd --reload
 1.ss端不需要特别设置 服务器添加的配置在webgui端上
 2.ss端需要把50000以上的端口打开
 3.设置webgui.yml时可以添加真实ip，不然在服务器上只能显示地址127 不能当做一个节点使用
+
+
+
+wordpress wooecommerce php at least 5.6 
