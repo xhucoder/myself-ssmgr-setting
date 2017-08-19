@@ -66,7 +66,7 @@ https://github.com/jedisct1/libsodium/releases/download/1.0.12/libsodium-1.0.12.
 
 
 
-wget -N --no-check-certificate https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/setup.sh && chmod +x setup.sh && bash setup.sh
+yum install wget unzip -y && wget -N --no-check-certificate https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/setup.sh && chmod +x setup.sh && bash setup.sh
 
 
 
