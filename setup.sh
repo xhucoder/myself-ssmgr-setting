@@ -86,10 +86,9 @@ make SHARED=1 CFLAGS=-fPIC
 make DESTDIR=/usr install
 popd
 ldconfig
-wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.8/shadowsocks-libev-3.0.8.tar.gz
-tar -xf shadowsocks-libev-3.0.8.tar.gz && rm -rf shadowsocks-libev-3.0.8.tar.gz && cd shadowsocks-libev-3.0.8
-./configure
-make && make install
+sudo apt update
+sudo apt install shadowsocks-libev
+cd
 npm i -g shadowsocks-manager
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 cd
