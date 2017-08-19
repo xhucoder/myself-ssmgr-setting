@@ -28,9 +28,8 @@ yum groupinstall "Development Tools" -y
 yum install wget curl tar unzip -y
 yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
 yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
-yum install epel-release -y
-yum install -y gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel libsodium-devel mbedtls-devel
 curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 sudo yum -y install nodejs
 cd /root
 wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
@@ -40,8 +39,8 @@ pushd libsodium-1.0.13
 make install
 popd
 wget https://github.com/ARMmbed/mbedtls/archive/mbedtls-2.5.1.tar.gz
-tar xvf mbedtls-2.5.1-gpl.tar.gz && rm -rf mbedtls-2.5.1-gpl.tar.gz
-pushd mbedtls-2.5.1
+tar xvf mbedtls-2.5.1.tar.gz && rm -rf mbedtls-2.5.1.tar.gz
+pushd mbedtls-mbedtls-2.5.1
 make SHARED=1 CFLAGS=-fPIC
 make DESTDIR=/usr install
 popd
@@ -66,9 +65,7 @@ systemctl start firewalld
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=80/udp --permanent
 firewall-cmd --reload
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
-service iptables restart
+
 		else
 apt-get update
 apt-get remove -y apache*
