@@ -1,4 +1,5 @@
 
+
 yum groupinstall "Development Tools" -y
 yum install wget curl tar unzip -y
 yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
@@ -7,9 +8,9 @@ curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 sudo yum -y install nodejs
 cd /root
-wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
-tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
-pushd libsodium-1.0.13
+wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.12/libsodium-1.0.12.tar.gz
+tar xvf libsodium-1.0.12.tar.gz && rm -rf libsodium-1.0.12.tar.gz
+pushd libsodium-1.0.12
 ./configure --prefix=/usr && make
 make install
 popd
@@ -26,8 +27,20 @@ tar -xf shadowsocks-libev-3.0.8.tar.gz && rm -rf shadowsocks-libev-3.0.8.tar.gz 
 ./configure
 make && make install
 npm i -g shadowsocks-manager
-
-
+screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
+cd
+mkdir -p ~/.ssmgr/
+wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
+wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
+sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
+cd ~/.ssmgr
+screen -dmS ssmgr ssmgr -c ss.yml
+screen -dmS webgui ssmgr -c webgui.yml
+cd
+systemctl start firewalld
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=80/udp --permanent
+firewall-cmd --reload
 
 
 ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
@@ -49,7 +62,7 @@ firewall-cmd --reload
 
 systemctl start firewalld
 
-
+https://github.com/jedisct1/libsodium/releases/download/1.0.12/libsodium-1.0.12.tar.gz
 
 
 
