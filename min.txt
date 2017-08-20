@@ -100,8 +100,8 @@ wget -N -P  /shadowsocks-manager/plugins/webgui/public/views/home/ https://raw.g
 cd /root/shadowsocks-manager/
 npm i
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
-wget -N -P https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
-wget -N -P https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
+wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
+wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
 sed -i "s#X.X.X.X#${IPAddress}#g" /root/shadowsocks-manager/webgui.yml
 screen -dmS ssmgr node server.js -c ss.yml
 screen -dmS webgui node server.js -c webgui.yml
