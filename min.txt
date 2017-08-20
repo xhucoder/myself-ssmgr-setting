@@ -96,10 +96,9 @@ make && make install
 cd
 git clone https://github.com/shadowsocks/shadowsocks-manager.git
 rm -fr /root/shadowsocks-manager/plugins/webgui/public/views/home/index.html
-wget -N -P  /shadowsocks-manager/plugins/webgui/public/views/home/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/index.html
+wget -N -P  /root/shadowsocks-manager/plugins/webgui/public/views/home/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/index.html
 cd /root/shadowsocks-manager/
 npm i
-screen -dmS node node server.js
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
 wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
