@@ -89,24 +89,22 @@ make SHARED=1 CFLAGS=-fPIC
 make DESTDIR=/usr install
 popd
 ldconfig
-cd
 wget -N -P  /root https://github.com/shadowsocks/shadowsocks-libev/releases/download/v3.0.8/shadowsocks-libev-3.0.8.tar.gz
 tar -xf shadowsocks-libev-3.0.8.tar.gz && rm -rf shadowsocks-libev-3.0.8.tar.gz && cd shadowsocks-libev-3.0.8
 ./configure
 make && make install
 cd
 git clone https://github.com/shadowsocks/shadowsocks-manager.git
-cd shadowsocks-manager
-npm i
-screen -dmS ss-manager node server.js -m aes-256-cfb -u --manager-address 127.0.0.1:6001
-cd
-mkdir -p ~/.ssmgr/
-wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
-wget -N -P  /root/shadowsocks-manager/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
-sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
+rm -fr /root/shadowsocks-manager/plugins/webgui/public/views/home/index.html
+wget -N -P  /shadowsocks-manager/plugins/webgui/public/views/home/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/index.html
 cd /root/shadowsocks-manager/
+npm i
+screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
+wget -N -P https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
+wget -N -P https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
+sed -i "s#X.X.X.X#${IPAddress}#g" /root/shadowsocks-manager/webgui.yml
 screen -dmS ssmgr node server.js -c ss.yml
-screen -dmS webgui node server -c webgui.yml
+screen -dmS webgui node server.js -c webgui.yml
 cd
 systemctl start firewalld
 firewall-cmd --zone=public --add-port=80/tcp --permanent
