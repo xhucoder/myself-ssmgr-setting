@@ -111,6 +111,53 @@ firewall-cmd --zone=public --add-port=80/tcp --permanent
 firewall-cmd --zone=public --add-port=80/udp --permanent
 firewall-cmd --reload
 
+yum update -y
+yum install fail2ban -y
+systemctl restart fail2ban
+
+
+wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+md5sum mysql57-community-release-el7-9.noarch.rpm
+rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+yum install mysql-server
+systemctl start mysqld #启动MySQL
+systemctl stop mysqld #关闭MySQL
+systemctl restart mysqld #重启MySQL
+systemctl status mysqld #查看MySQL运行状态
+systemctl enable mysqld #设置开机启动
+systemctl disable mysqld #关闭开机启动
+grep 'temporary password' /var/log/mysqld.log
+create database testdb;
+create user 'testuser'@'localhost' identified by 'password';
+grant all on testdb.* to 'testuser' identified by 'password';
+mysql -u testuser -p
+use mysql;
+update user SET PASSWORD=PASSWORD("password") WHERE USER='root';
+flush privileges;
+exit
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new password';
+
+wget https://raw.githubusercontent.com/major/MySQLTuner-perl/master/mysqltuner.pl
+perl ./mysqltuner.pl
+
+
+
+
+解压：tar zxvf FileName.tar.gz
+压缩：tar zcvf FileName.tar.gz DirName
+
+
+
+
+
+ 	
+mysql_secure_installation
+
+/etc/my.cnf #sql配置
+
+
+
 
 
 
