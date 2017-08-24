@@ -28,6 +28,8 @@ yum groupinstall "Development Tools" -y
 yum install wget curl tar unzip -y
 yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
 yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+yum install epel-release -y
+yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel libsodium-devel mbedtls-devel -y
 curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 sudo yum -y install nodejs
@@ -85,8 +87,9 @@ make SHARED=1 CFLAGS=-fPIC
 make DESTDIR=/usr install
 popd
 ldconfig
-sudo apt update
-sudo apt install shadowsocks-libev
+sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
+sudo apt-get update -y
+sudo apt install shadowsocks-libev -y
 cd
 npm i -g shadowsocks-manager
 screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
