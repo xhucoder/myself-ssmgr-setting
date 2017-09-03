@@ -28,10 +28,7 @@ yum groupinstall "Development Tools" -y
 yum install wget curl tar unzip -y
 yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
 yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
-yum install epel-release -y
-yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel libsodium-devel mbedtls-devel -y
 curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
-curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 sudo yum -y install nodejs
 cd /root
 wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
@@ -69,42 +66,40 @@ firewall-cmd --zone=public --add-port=80/udp --permanent
 firewall-cmd --reload
 
 		else
-apt-get update
-apt-get remove -y apache*
-apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-apt-get install -y nodejs
-wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
-tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
+sudo apt-get update
+sudo apt-get remove -y apache*
+sudo apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
+sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
+sudo tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
 pushd libsodium-1.0.13
-./configure --prefix=/usr && make
-make install
+sudo ./configure --prefix=/usr
+sudo make
+sudo make install
 popd
-wget https://github.com/ARMmbed/mbedtls/archive/mbedtls-2.5.1.tar.gz
-tar xvf mbedtls-2.5.1.tar.gz && rm -rf mbedtls-2.5.1.tar.gz
+sudo wget https://github.com/ARMmbed/mbedtls/archive/mbedtls-2.5.1.tar.gz
+sudo tar xvf mbedtls-2.5.1.tar.gz && rm -rf mbedtls-2.5.1.tar.gz
 pushd mbedtls-mbedtls-2.5.1
-make SHARED=1 CFLAGS=-fPIC
-make DESTDIR=/usr install
+sudo make SHARED=1 CFLAGS=-fPIC
+sudo make DESTDIR=/usr install
 popd
-ldconfig
-sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
+sudo ldconfig
+sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
 sudo apt-get update -y
 sudo apt install shadowsocks-libev -y
 cd
-npm i -g shadowsocks-manager
-screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
+sudo npm i -g shadowsocks-manager
+sudo screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
 cd
-mkdir -p ~/.ssmgr/
-wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
-wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
-sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
+sudo mkdir -p ~/.ssmgr/
+sudo wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/ss.yml
+sudo wget -N -P  /root/.ssmgr/ https://raw.githubusercontent.com/xhucoder/myself-ssmgr-setting/master/webgui.yml
+sudo sed -i "s#X.X.X.X#${IPAddress}#g" /root/.ssmgr/webgui.yml
 cd ~/.ssmgr
-screen -dmS ssmgr ssmgr -c ss.yml
-screen -dmS webgui ssmgr -c webgui.yml
+sudo screen -dmS ssmgr ssmgr -c ss.yml
+sudo screen -dmS webgui ssmgr -c webgui.yml
 cd
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
-service iptables restart
                 fi
 }
 install
