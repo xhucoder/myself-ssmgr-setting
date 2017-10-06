@@ -87,7 +87,7 @@ popd
 sudo ldconfig
 sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
 sudo apt-get update -y
-sudo apt install shadowsocks-libev -y
+sudo apt install shadowsocks-libev
 cd
 sudo npm i -g shadowsocks-manager
 sudo screen -dmS ss-manager ss-manager -m aes-256-cfb -u --manager-address 127.0.0.1:6001
