@@ -1,6 +1,8 @@
 pm2 --name "ss" -f start ssmgr -x -- -c /root/.ssmgr/ss.yml
 pm2 --name "webgui" -f start ssmgr -x -- -c /root/.ssmgr/webgui.yml
 pm2 --name "ssmgr" -f start ss-manager -x -- -m aes-256-cfb -u --manager-address 127.0.0.1:6001
+pm2 save
+pm2 startup
 
 ssmgr -t m -m yourHost:yourPort
 
