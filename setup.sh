@@ -25,6 +25,7 @@ install(){
 	check_sys
 	if [[ ${release} = "centos" ]]; then
 sudo yum groupinstall "Development Tools" -y
+sudo yum install wget git zip   gcc gcc-c++ -y
 sudo yum install wget curl tar unzip -y
 sudo yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
 sudo yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
