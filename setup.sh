@@ -24,11 +24,12 @@ check_sys(){
 install(){
 	check_sys
 	if [[ ${release} = "centos" ]]; then
-yum groupinstall "Development Tools" -y
-yum install wget curl tar unzip -y
-yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
-yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
-curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+sudo yum groupinstall "Development Tools" -y
+sudo yum install wget curl tar unzip -y
+sudo yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel libtool xmlto asciidoc udns-devel libev-devel
+sudo yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
+sudo yum install gettext gcc autoconf libtool automake make asciidoc xmlto c-ares-devel libev-devel
+sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 sudo yum -y install nodejs
 cd /root
 wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
