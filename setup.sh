@@ -24,6 +24,7 @@ check_sys(){
 install(){
 	check_sys
 	if [[ ${release} = "centos" ]]; then
+	sudo yum update -y
 sudo yum groupinstall "Development Tools" -y
 sudo yum install wget git zip   gcc gcc-c++ -y
 sudo yum install wget curl tar unzip -y
