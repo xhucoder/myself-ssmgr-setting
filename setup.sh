@@ -31,6 +31,8 @@ sudo yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel li
 sudo yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 sudo yum install gettext gcc autoconf libtool automake make asciidoc xmlto c-ares-devel libev-devel -y
 sudo yum install -y gcc-c++ make
+yum install epel-release -y
+yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y
 sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 sudo yum -y install nodejs
 cd /root
