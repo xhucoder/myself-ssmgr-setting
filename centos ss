@@ -1,0 +1,18 @@
+yum install epel-release -y
+yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y
+yum install -y gcc automake autoconf libtool make build-essential autoconf libtool gcc
+yum install -y curl curl-devel zlib-devel openssl-devel perl perl-devel cpio expat-devel gettext-devel
+yum install -y git
+git clone https://github.com/shadowsocks/shadowsocks-libev.git
+cd shadowsocks-libev
+git submodule update --init --recursive
+
+
+卸载方法：
+使用 root 用户登录，运行以下命令： ./shadowsocks-libev.sh uninstall
+
+使用命令：
+启动：/etc/init.d/shadowsocks start
+停止：/etc/init.d/shadowsocks stop
+重启：/etc/init.d/shadowsocks restart
+查看状态：/etc/init.d/shadowsocks status
