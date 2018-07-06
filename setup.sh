@@ -34,7 +34,7 @@ sudo yum install -y gcc gettext-devel unzip autoconf automake make zlib-devel li
 sudo yum install -y pcre pcre-devel perl perl-devel cpio expat-devel openssl-devel mbedtls-devel screen nano
 sudo yum install gettext gcc autoconf libtool automake make asciidoc xmlto c-ares-devel libev-devel -y
 yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto c-ares-devel libev-devel libsodium-devel mbedtls-devel -y
-sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 sudo yum install -y gcc-c++ make
 sudo yum -y install nodejs
 cd /root
@@ -77,7 +77,7 @@ sudo apt-get update
 sudo apt-get remove -y apache*
 sudo apt-get install -y build-essential npm wget curl tar git unzip gettext build-essential screen autoconf automake libtool openssl libssl-dev zlib1g-dev xmlto asciidoc libpcre3-dev libudns-dev libev-dev vim
 sudo apt-get install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake libmbedtls-dev libsodium-dev -y
-sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo wget -N -P  /root https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz
 sudo tar xvf libsodium-1.0.13.tar.gz && rm -rf libsodium-1.0.13.tar.gz
